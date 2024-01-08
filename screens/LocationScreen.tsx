@@ -1,8 +1,9 @@
 import MapView from 'react-native-maps';
 import { useContext, useState } from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, Button, ActivityIndicator } from 'react-native';
 import Countdown from '../components/Countdown';
 import { LocationContext } from '../context/LocationContext';
+import RefreshButton from '../components/RefreshButton';
 
 type LocationScreenProps = {
   route: {
@@ -21,12 +22,15 @@ type LocationScreenProps = {
 
 export default function LocationScreen( ) {
   const {neighborhood, region, fetchLocation} = useContext(LocationContext);
-  console.log({neighborhood})
-  console.log({region})
-
+  const [reloading, setReloading] = useState(false);
 
   async function refreshLocation() {
+
+    setReloading(true);
     fetchLocation();
+    setTimeout(() => {
+      setReloading(false);
+    }, 11000)
   }
 
   return (
@@ -37,14 +41,15 @@ export default function LocationScreen( ) {
             showsUserLocation={true}
             region={region}
           />
-          <View style={[styles.locationsEnabledView, styles.viewOnMap]}>
+          <View>
             {neighborhood === '' ? (
-              <Countdown />
+              reloading ? (<ActivityIndicator style={styles.activityIndicator} size="large"  color="black"/>) : (<Countdown />)
             ) : (
-              <View>
-                <Text>You are in {neighborhood}</Text>
-                <Button onPress={refreshLocation} title="New Search" />
+              <>
+              <View style={styles.locationVisibleView}>
+                <Text style={{color: "black", fontSize: 20,}}>{neighborhood} <RefreshButton onPressFunction={refreshLocation} /></Text>
               </View>
+              </>
             )}
           </View>
     </View>
@@ -55,28 +60,28 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'flex-end',
+    width: '100%',
+    height: '100%',
   },
-  viewOnMap: {
-    display: 'flex',
-    justifyContent: 'center',
-    backgroundColor: 'purple',
-    marginBottom: 70,
-    borderRadius: 10,
-    width: 'auto',
-    height: '15%',
-    padding: '5%',
+  // locationsDisabledView: {
+  //   display: 'flex',
+  //   alignItems: 'center',
+  // },
+  // retryPermissionsView: {
+  //   flex: 1,
+  //   fontSize: 14,
+  //   margin: 4,
+  // },
+  activityIndicator: {
+    backgroundColor: "#FDF1D9", 
+    top: 325, 
+    padding: 10
   },
-  locationsDisabledView: {
-    display: 'flex',
-    alignItems: 'center',
-  },
-  locationsEnabledView: {
-    height: 'auto',
-  },
-  retryPermissionsView: {
-    display: 'flex',
-    fontSize: 14,
-    margin: 4,
-  },
+  locationVisibleView: {
+    backgroundColor: "#E1E0DB",
+    top: 60,
+    padding: 2,
+    paddingBottom: 8
+  }
+
 });

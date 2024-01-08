@@ -6,7 +6,6 @@ import { Canvas } from '@react-three/fiber';
 import * as Location from 'expo-location';
 import { LocationObject } from 'expo-location';
 import Geocoder from 'react-native-geocoding';
-import {GEOCODER_KEY} from "./utils/config"
 import Globe from './components/Globe';
 import QuestionMarkStar from './components/QuestionMarkStar';
 import LocationScreen from './screens/LocationScreen';
@@ -52,7 +51,7 @@ function HomeScreen({ navigation }) {
       <View style={styles.button}>
         <Button
           title="Where the Fuck Am I?"
-          color="red"
+          color="white"
           onPress={() => handleClick()}
         />
       </View>
@@ -94,14 +93,16 @@ const styles = StyleSheet.create({
   },
   button: {
     borderWidth: 1,
-    borderRadius: 15,
+    borderRadius: 10,
+    marginTop: -60,
+    backgroundColor: "black",
     borderColor: 'white',
     padding: 2,
     shadowColor: 'white',
     shadowOpacity: 1,
     shadowOffset: {
-      width: 4,
-      height: 4,
+      width: 1,
+      height: 1,
     },
     shadowRadius: 2,
     fontSize: 20,
@@ -126,6 +127,7 @@ export default function App() {
   });
 
   async function fetchLocation() {
+    setNeighborhood("")
     let { status } = await Location.requestForegroundPermissionsAsync();
     if (status !== 'granted') {
       setErrorMessage(

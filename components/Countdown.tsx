@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Text } from 'react-native';
+import { Text, View } from 'react-native';
 
 export default function Countdown(props: any) {
-    let [count, setCount] = useState(9);
+    let [count, setCount] = useState(10);
 
     useEffect(() => {
       setTimeout(() => {
@@ -13,8 +13,9 @@ export default function Countdown(props: any) {
     }, [count])
    
   return (
-    <>
-      <Text>The neighborhood will be available in {count} </Text>
-    </>
+    <View style={{justifyContent: "center", marginTop: "50%"}}>
+      <Text style={{backgroundColor: "#bce3f4", color: "black", fontSize: 20, padding: 3}}>The neighborhood will be available in:</Text>
+      <Text style={{color: "black", fontSize: 50, marginLeft: "50%"}}>{count}</Text>
+    </View>
   );
 }
