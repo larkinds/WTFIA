@@ -1,24 +1,9 @@
 import MapView from 'react-native-maps';
 import { useContext, useState } from 'react';
-import { StyleSheet, Text, View, Button, ActivityIndicator } from 'react-native';
+import { StyleSheet, Text, View, ActivityIndicator } from 'react-native';
 import Countdown from '../components/Countdown';
 import { LocationContext } from '../context/LocationContext';
 import RefreshButton from '../components/RefreshButton';
-
-type LocationScreenProps = {
-  route: {
-    params: {
-      errorMessage: string;
-    neighborhood: string;
-    region: {
-      latitude: number;
-      longitude: number;
-      latitudeDelta: number;
-      longitudeDelta: number;
-    };
-  };
-};
-}
 
 export default function LocationScreen( ) {
   const {neighborhood, region, fetchLocation} = useContext(LocationContext);
@@ -83,5 +68,4 @@ const styles = StyleSheet.create({
     padding: 2,
     paddingBottom: 8
   }
-
 });
