@@ -10,7 +10,6 @@ export default function LocationScreen( ) {
   const [reloading, setReloading] = useState(false);
 
   async function refreshLocation() {
-
     setReloading(true);
     fetchLocation();
     setTimeout(() => {
@@ -59,12 +58,12 @@ const styles = StyleSheet.create({
   // },
   activityIndicator: {
     backgroundColor: "#FDF1D9", 
-    top: 325, 
+    top: 430, 
     padding: 10
   },
   locationVisibleView: {
     backgroundColor: "#E1E0DB",
-    top: 60,
+    top: 200,
     padding: 2,
     paddingBottom: 8
   }
