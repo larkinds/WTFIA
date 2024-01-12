@@ -14,4 +14,9 @@ module.exports = {
     ],
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
+  transformIgnorePatterns: ["node_modules/(?!(@react-navigation/native-stack|@react-native/js-polyfills/error-guard|))"],
+  testPathIgnorePatterns: [
+    "\\.snap$",
+    "<rootDir>/node_modules/"
+  ],
 }

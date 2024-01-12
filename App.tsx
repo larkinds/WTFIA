@@ -11,7 +11,7 @@ import QuestionMarkStar from './components/QuestionMarkStar';
 import LocationScreen from './screens/LocationScreen';
 import { LocationContext } from './context/LocationContext';
 
-function HomeScreen({ navigation }) {
+function HomeScreen({ navigation }: any) {
   const { fetchLocation } = useContext(LocationContext);
 
   function handleClick() {
@@ -155,7 +155,7 @@ export default function App() {
         };
         setRegion(tempRegion);
 
-        const geocoderKey: string = process.env.EXPO_PUBLIC_GEOCODER_KEY
+        const geocoderKey: string = process.env.EXPO_PUBLIC_GEOCODER_KEY || "";
 
         Geocoder.init(geocoderKey);
 
@@ -191,8 +191,6 @@ export default function App() {
           <Stack.Screen
             name="Location"
             component={LocationScreen}
-            errorMessage={errorMessage}
-            setCurrentLocation={setCurrentLocation}
           />
         </Stack.Navigator>
       </NavigationContainer>
