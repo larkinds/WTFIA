@@ -3,7 +3,7 @@ const { defaults: tsjPreset } = require('ts-jest/presets')
 /** @type {import('ts-jest').JestConfigWithTsJest} */
 module.exports = {
   ...tsjPreset,
-  preset: 'react-native',
+  preset: 'jest-expo',
   transform: {
     '^.+\\.jsx$': 'babel-jest',
     '^.+\\.tsx?$': [
@@ -18,5 +18,5 @@ module.exports = {
   testPathIgnorePatterns: [
     "\\.snap$",
     "<rootDir>/node_modules/"
-  ],
+  ]
 }

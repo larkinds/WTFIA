@@ -26,17 +26,20 @@ export default function App() {
   });
 
   async function fetchLocation() {
-    setNeighborhood("")
+    setNeighborhood("");
     let { status } = await Location.requestForegroundPermissionsAsync();
     if (status !== 'granted') {
       setErrorMessage(
         'You can still use WTFIA by entering your address manually on the Explore page.'
       );
       return;
-    }
+    };
     let location: LocationObject = await Location.getCurrentPositionAsync();
     setCurrentLocation(location);
-  }
+  };
+
+
+
 
   useEffect(() => {
     (async () => {
