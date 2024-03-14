@@ -19,21 +19,21 @@ export default function HomeScreen({ navigation }: any) {
         <QuestionMarkStar
           duration={5000}
           color="white"
-          left={'-20%'}
-          top={'10%'}
+          left={20}
+          top={10}
         />
         <QuestionMarkStar
           duration={2000}
           color="white"
-          left={'25%'}
-          top={'20%'}
+          left={25}
+          top={20}
         />
-        <QuestionMarkStar duration={2000} color="white" left={'32%'} top={'2%'} />
+        <QuestionMarkStar duration={2000} color="white" left={32} top={2} />
         <QuestionMarkStar
           duration={2000}
           color="white"
-          left={'-32%'}
-          top={'25%'}
+          left={32}
+          top={25}
         />
         <View style={styles.canvas}>
           <Suspense fallback={<Text>Temp</Text>}>
@@ -53,23 +53,23 @@ export default function HomeScreen({ navigation }: any) {
         <QuestionMarkStar
           duration={2000}
           color="white"
-          left={'-40%'}
-          top={'-20%'}
+          left={40}
+          top={20}
         />
-        <QuestionMarkStar duration={5000} color="red" left={'20%'} top={'-10%'} />
+        <QuestionMarkStar duration={5000} color="red" left={20} top={10} />
         <QuestionMarkStar
           duration={5000}
           color="white"
-          left={'-20%'}
-          top={'10%'}
+          left={20}
+          top={10}
         />
         <QuestionMarkStar
           duration={2000}
           color="white"
-          left={'-25%'}
-          top={'-7%'}
+          left={25}
+          top={7}
         />
-        <QuestionMarkStar duration={2000} color="white" left={'32%'} top={'0%'} />
+        <QuestionMarkStar duration={2000} color="white" left={32} top={0} />
       </View>
     );
   }

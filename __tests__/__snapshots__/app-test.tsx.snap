@@ -1,0 +1,342 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    [
+      {
+        "flex": 1,
+      },
+      undefined,
+    ]
+  }
+>
+  <RNSScreenStack
+    style={
+      {
+        "flex": 1,
+      }
+    }
+  >
+    <RNSScreen
+      collapsable={false}
+      gestureResponseDistance={
+        {
+          "bottom": -1,
+          "end": -1,
+          "start": -1,
+          "top": -1,
+        }
+      }
+      nativeBackButtonDismissalEnabled={false}
+      onAppear={[Function]}
+      onDisappear={[Function]}
+      onDismissed={[Function]}
+      onHeaderBackButtonClicked={[Function]}
+      onNativeDismissCancelled={[Function]}
+      onTransitionProgress={[Function]}
+      onWillDisappear={[Function]}
+      replaceAnimation="push"
+      sheetAllowedDetents="large"
+      sheetCornerRadius={-1}
+      sheetExpandsWhenScrolledToEdge={true}
+      sheetGrabberVisible={false}
+      sheetLargestUndimmedDetent="all"
+      stackPresentation="push"
+      style={
+        {
+          "bottom": 0,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        }
+      }
+      swipeDirection="horizontal"
+    >
+      <View
+        accessibilityElementsHidden={false}
+        importantForAccessibility="auto"
+        style={
+          {
+            "flex": 1,
+            "flexDirection": "column-reverse",
+          }
+        }
+      >
+        <View
+          collapsable={false}
+          style={
+            [
+              {
+                "flex": 1,
+              },
+              {
+                "backgroundColor": "rgb(242, 242, 242)",
+              },
+              undefined,
+            ]
+          }
+        >
+          <View
+            style={
+              {
+                "alignItems": "center",
+                "backgroundColor": "black",
+                "display": "flex",
+                "height": "100%",
+                "width": "100%",
+              }
+            }
+          >
+            <Text
+              collapsable={false}
+              style={
+                {
+                  "color": "rgba(0, 0, 0, 1)",
+                  "left": 20,
+                  "top": 10,
+                }
+              }
+            >
+              ?
+            </Text>
+            <Text
+              collapsable={false}
+              style={
+                {
+                  "color": "rgba(0, 0, 0, 1)",
+                  "left": 25,
+                  "top": 20,
+                }
+              }
+            >
+              ?
+            </Text>
+            <Text
+              collapsable={false}
+              style={
+                {
+                  "color": "rgba(0, 0, 0, 1)",
+                  "left": 32,
+                  "top": 2,
+                }
+              }
+            >
+              ?
+            </Text>
+            <Text
+              collapsable={false}
+              style={
+                {
+                  "color": "rgba(0, 0, 0, 1)",
+                  "left": 32,
+                  "top": 25,
+                }
+              }
+            >
+              ?
+            </Text>
+            <View
+              style={
+                {
+                  "height": 600,
+                  "width": 600,
+                }
+              }
+            >
+              <div
+                style={
+                  {
+                    "height": "100%",
+                    "overflow": "hidden",
+                    "pointerEvents": "auto",
+                    "position": "relative",
+                    "width": "100%",
+                  }
+                }
+              >
+                <div
+                  style={
+                    {
+                      "height": "100%",
+                      "width": "100%",
+                    }
+                  }
+                >
+                  <canvas
+                    style={
+                      {
+                        "display": "block",
+                      }
+                    }
+                  />
+                </div>
+              </div>
+            </View>
+            <View
+              style={
+                {
+                  "backgroundColor": "black",
+                  "borderColor": "white",
+                  "borderRadius": 10,
+                  "borderWidth": 1,
+                  "fontSize": 20,
+                  "marginTop": -60,
+                  "padding": 2,
+                  "shadowColor": "white",
+                  "shadowOffset": {
+                    "height": 1,
+                    "width": 1,
+                  },
+                  "shadowOpacity": 1,
+                  "shadowRadius": 2,
+                }
+              }
+            >
+              <View
+                accessibilityRole="button"
+                accessibilityState={
+                  {
+                    "busy": undefined,
+                    "checked": undefined,
+                    "disabled": undefined,
+                    "expanded": undefined,
+                    "selected": undefined,
+                  }
+                }
+                accessibilityValue={
+                  {
+                    "max": undefined,
+                    "min": undefined,
+                    "now": undefined,
+                    "text": undefined,
+                  }
+                }
+                accessible={true}
+                collapsable={false}
+                focusable={true}
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  {
+                    "opacity": 1,
+                  }
+                }
+              >
+                <View
+                  style={
+                    [
+                      {},
+                    ]
+                  }
+                >
+                  <Text
+                    style={
+                      [
+                        {
+                          "color": "#007AFF",
+                          "fontSize": 18,
+                          "margin": 8,
+                          "textAlign": "center",
+                        },
+                        {
+                          "color": "white",
+                        },
+                      ]
+                    }
+                  >
+                    Where the Fuck Am I?
+                  </Text>
+                </View>
+              </View>
+            </View>
+            <Text
+              collapsable={false}
+              style={
+                {
+                  "color": "rgba(0, 0, 0, 1)",
+                  "left": 40,
+                  "top": 20,
+                }
+              }
+            >
+              ?
+            </Text>
+            <Text
+              collapsable={false}
+              style={
+                {
+                  "color": "rgba(0, 0, 0, 1)",
+                  "left": 20,
+                  "top": 10,
+                }
+              }
+            >
+              ?
+            </Text>
+            <Text
+              collapsable={false}
+              style={
+                {
+                  "color": "rgba(0, 0, 0, 1)",
+                  "left": 20,
+                  "top": 10,
+                }
+              }
+            >
+              ?
+            </Text>
+            <Text
+              collapsable={false}
+              style={
+                {
+                  "color": "rgba(0, 0, 0, 1)",
+                  "left": 25,
+                  "top": 7,
+                }
+              }
+            >
+              ?
+            </Text>
+            <Text
+              collapsable={false}
+              style={
+                {
+                  "color": "rgba(0, 0, 0, 1)",
+                  "left": 32,
+                  "top": 0,
+                }
+              }
+            >
+              ?
+            </Text>
+          </View>
+        </View>
+      </View>
+      <RNSScreenStackHeaderConfig
+        backButtonInCustomView={false}
+        backTitleVisible={true}
+        backgroundColor="transparent"
+        color="rgb(0, 122, 255)"
+        direction="ltr"
+        disableBackButtonMenu={false}
+        hidden={false}
+        hideBackButton={false}
+        hideShadow={true}
+        largeTitleHideShadow={false}
+        title=""
+        titleColor="rgb(28, 28, 30)"
+        topInsetEnabled={false}
+        translucent={true}
+      />
+    </RNSScreen>
+  </RNSScreenStack>
+</RNCSafeAreaProvider>
+`;
