@@ -4,9 +4,10 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as Location from 'expo-location';
 import { LocationObject } from 'expo-location';
 import Geocoder from 'react-native-geocoding';
-import LocationScreen from './screens/LocationScreen';
 import { LocationContext } from './context/LocationContext';
+import LocationScreen from './screens/LocationScreen';
 import HomeScreen from './screens/HomeScreen';
+import SearchScreen from './screens/SearchScreen'
 
 const Stack = createNativeStackNavigator();
 
@@ -35,10 +36,9 @@ export default function App() {
       return;
     };
     let location: LocationObject = await Location.getCurrentPositionAsync();
+    console.log({location})
     setCurrentLocation(location);
   };
-
-
 
 
   useEffect(() => {
@@ -55,6 +55,7 @@ export default function App() {
           latitudeDelta: 0.05,
           longitudeDelta: 0.05,
         };
+
         setRegion(tempRegion);
 
         const geocoderKey: string = process.env.EXPO_PUBLIC_GEOCODER_KEY || "";
@@ -86,10 +87,11 @@ export default function App() {
   }, [currentLocation]);
 
   return (
-    <LocationContext.Provider value={{ neighborhood, region, fetchLocation }}>
+    <LocationContext.Provider value={{ neighborhood, region, setCurrentLocation, fetchLocation }}>
       <NavigationContainer>
         <Stack.Navigator screenOptions={{headerTransparent: true}}>
-          <Stack.Screen name="Home" component={HomeScreen} options={{title: ""}} />
+          <Stack.Screen name="Home" component={SearchScreen} options={{title: ""}} />
+          <Stack.Screen name="Search" component={SearchScreen} />
           <Stack.Screen
             name="Location"
             component={LocationScreen}

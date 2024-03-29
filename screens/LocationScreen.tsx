@@ -31,7 +31,7 @@ export default function LocationScreen( ) {
             ) : (
               <>
               <View style={styles.locationVisibleView}>
-                <Text style={{color: "black", fontSize: 20,}}>{neighborhood} <RefreshButton onPressFunction={refreshLocation} /></Text>
+                <Text style={{color: "black", fontSize: 20, marginLeft:5, marginRight: 5}}>{neighborhood} <RefreshButton onPressFunction={refreshLocation} /></Text>
               </View>
               </>
             )}
