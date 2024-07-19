@@ -69,7 +69,7 @@ export default function SearchScreen({ navigation }: any) {
           onSubmitEditing={() => handleClick()}
           onChangeText={(text) => onChangeText(text)}
           value={address}
-          style={{ padding: 10, backgroundColor: "white" }}
+          style={{ marginLeft: 20, padding: 10, backgroundColor: "white", width: 350 }}
         />
       </View>
       <Button title="Search" onPress={handleClick} />
