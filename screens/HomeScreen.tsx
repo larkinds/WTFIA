@@ -20,26 +20,14 @@ export default function HomeScreen({ navigation }: any) {
   
     return (
       <View style={styles.container}>
-        <QuestionMarkStar
-          duration={5000}
-          color="white"
-          left={20}
-          top={10}
-        />
-        <QuestionMarkStar
-          duration={2000}
-          color="white"
-          left={25}
-          top={20}
-        />
-        <QuestionMarkStar duration={2000} color="white" left={32} top={2} />
-        <QuestionMarkStar
-          duration={2000}
-          color="white"
-          left={32}
-          top={25}
-        />
-          <Text style={styles.title}>Where the Fuck Am I?</Text>
+        <QuestionMarkStar duration={5000} color="white" left={-60} top={100} />
+        <QuestionMarkStar duration={2000} color="white" left={130} top={120} />
+        <QuestionMarkStar duration={5000} color="white" left={-140} top={110} />
+        <QuestionMarkStar duration={2000} color="pink" left={32} top={15} />
+        <Text style={styles.title}>Where the Fuck Am I?</Text>
+        <QuestionMarkStar duration={5000} color="white" left={-140} top={110} />
+        <QuestionMarkStar duration={2000} color="white" left={32} top={35} />
+
         <View style={styles.canvas}>
           <Suspense fallback={<Text>Temp</Text>}>
             <Canvas>
@@ -48,6 +36,11 @@ export default function HomeScreen({ navigation }: any) {
             </Canvas>
           </Suspense>
         </View>
+
+        <QuestionMarkStar duration={5000} color="white" left={90} top={-150} />
+        <QuestionMarkStar duration={3000} color="white" left={-110} top={-200} />
+        <QuestionMarkStar duration={2000} color="white" left={-150} top={-300} />
+        <QuestionMarkStar duration={5000} color="white" left={150} top={-400} />
         <View style={styles.buttonContainer}>
           <Button
             title="Locate Me"
@@ -60,25 +53,9 @@ export default function HomeScreen({ navigation }: any) {
             onPress={() => navigateToSearch()}
           />
         </View>
-        <QuestionMarkStar
-          duration={2000}
-          color="white"
-          left={40}
-          top={20}
-        />
-        <QuestionMarkStar duration={5000} color="red" left={20} top={10} />
-        <QuestionMarkStar
-          duration={5000}
-          color="white"
-          left={20}
-          top={10}
-        />
-        <QuestionMarkStar
-          duration={2000}
-          color="white"
-          left={25}
-          top={7}
-        />
+        <QuestionMarkStar duration={5000} color="red" left={-150} top={10} />
+        <QuestionMarkStar duration={5000} color="white" left={-60} top={60} />
+        <QuestionMarkStar duration={2000} color="white" left={130} top={-7} />
         <QuestionMarkStar duration={2000} color="white" left={32} top={0} />
       </View>
     );
@@ -116,7 +93,7 @@ export default function HomeScreen({ navigation }: any) {
     },
     buttonContainer: {
       justifyContent: "space-around",
-      marginTop: -80,
+      marginTop: -180,
      
     },
     buttons: {
