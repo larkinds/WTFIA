@@ -1,14 +1,24 @@
+import { createContext } from 'react';
 import { LocationObject } from 'expo-location';
-import { SetStateAction, createContext } from 'react';
+
+export type GeographicInfo = {
+  neighborhood: string,
+  region: {
+      latitude: number,
+      longitude: number,
+      latitudeDelta: number,
+      longitudeDelta: number,
+    }
+}
 
 export const LocationContext = createContext({
     neighborhood: "",
     region: {
-        latitude: 0,
+      latitude: 0,
       longitude: 0,
       latitudeDelta: .3,
       longitudeDelta: .3,
     },
-    setCurrentLocation: (location: LocationObject) => {},
-    fetchLocation: () => console.log("initialFetch")
+    setCurrentLocation: (location: GeographicInfo | LocationObject) => {},
+    fetchLocation: () => {}
 });

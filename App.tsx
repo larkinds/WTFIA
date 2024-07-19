@@ -4,16 +4,16 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as Location from 'expo-location';
 import { LocationObject } from 'expo-location';
 import Geocoder from 'react-native-geocoding';
-import { LocationContext } from './context/LocationContext';
+import { GeographicInfo, LocationContext } from './context/LocationContext';
 import LocationScreen from './screens/LocationScreen';
-import HomeScreen from './screens/HomeScreen';
 import SearchScreen from './screens/SearchScreen'
+import HomeScreen from './screens/HomeScreen';
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const [currentLocation, setCurrentLocation] = useState<LocationObject | null>(
+  const [currentLocation, setCurrentLocation] = useState<LocationObject | GeographicInfo | null>(
     null
   );
   const [neighborhood, setNeighborhood] = useState<string>('');
@@ -36,17 +36,23 @@ export default function App() {
       return;
     };
     let location: LocationObject = await Location.getCurrentPositionAsync();
-    console.log({location})
+ 
     setCurrentLocation(location);
   };
 
 
   useEffect(() => {
     (async () => {
+      if (currentLocation && "neighborhood" in currentLocation) {
+        setNeighborhood(currentLocation.neighborhood);
+        setRegion(currentLocation.region);
+        return
+      }
+
       let latitude: number;
       let longitude: number;
 
-      if (currentLocation) {
+      if (currentLocation && "coords" in currentLocation && currentLocation.coords && currentLocation.coords.latitude && currentLocation.coords.longitude) {
         latitude = currentLocation?.coords.latitude;
         longitude = currentLocation?.coords.longitude;
         let tempRegion = {
@@ -67,7 +73,7 @@ export default function App() {
             const addressComponent = json.results[0].address_components;
 
             const neighborhood = addressComponent.find((component) =>
-              component.types.includes('neighborhood')
+              component.types.includes('neighborhood') || component.types.includes("locality")
             );
 
             if (neighborhood) {
@@ -90,13 +96,9 @@ export default function App() {
     <LocationContext.Provider value={{ neighborhood, region, setCurrentLocation, fetchLocation }}>
       <NavigationContainer>
         <Stack.Navigator screenOptions={{headerTransparent: true}}>
-          <Stack.Screen name="Home" component={SearchScreen} options={{title: ""}} />
+          <Stack.Screen name="Home" component={HomeScreen} options={{title: ""}} />
+          <Stack.Screen name="Location" component={LocationScreen} />
           <Stack.Screen name="Search" component={SearchScreen} />
-          <Stack.Screen
-            name="Location"
-            component={LocationScreen}
-            options={{title: ""}}
-          />
         </Stack.Navigator>
       </NavigationContainer>
     </LocationContext.Provider>

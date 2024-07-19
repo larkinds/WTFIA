@@ -1,30 +1,50 @@
 import { useContext, Suspense, useState } from 'react';
-import { StyleSheet, View, TextInput, Button } from 'react-native';
-import { LocationContext } from '../context/LocationContext';
+import { StyleSheet, View, TextInput, Button, Keyboard } from 'react-native';
 import Geocoder from 'react-native-geocoding';
+import { LocationContext } from '../context/LocationContext';
 
-export default function HomeScreen({ navigation }: any) {
-  const [address, onChangeText] = useState('397 Bridge St, Brooklyn NY');
+export default function SearchScreen({ navigation }: any) {
+  const [address, onChangeText] = useState('');
   const { setCurrentLocation } = useContext(LocationContext);
 
-  function handleClick() {
+  async function handleClick() {
+    Keyboard.dismiss();
       //to do: figure out if this init can be done conditionally
     const geocoderKey: string = process.env.EXPO_PUBLIC_GEOCODER_KEY || '';
     Geocoder.init(geocoderKey);
 
 
-    Geocoder.from(address).then((json) => {
-      console.log(json.results);
+    let latitude: number | undefined;
+    let longitude: number | undefined;
+    let neighborhood: string | undefined;
+
+    await Geocoder.from(address).then((json) => {
+      let geometry = json.results[0].geometry;
+      latitude = geometry.bounds?.northeast.lat || geometry.location.lat;
+      longitude = geometry.bounds?.northeast.lng || geometry.location.lng;
 
       const addressComponent = json.results[0].address_components;
 
-      const neighborhood = addressComponent.find((component) =>
-        component.types.includes('neighborhood')
-      );
+      neighborhood = addressComponent.find((component) => component.types.includes('neighborhood') || component.types.includes("locality")
+      )?.long_name;
 
-    //   to do: massage the location information above into a Location Object
-    //https://docs.expo.dev/versions/latest/sdk/location/#locationobject
-    //   setCurrentLocation()
+      console.log({neighborhood})
+
+
+      if (latitude && longitude && neighborhood !== undefined) {
+        
+        setCurrentLocation(
+          {
+            neighborhood,
+            region: {
+              latitude,
+              longitude,
+              latitudeDelta: .05,
+              longitudeDelta: .05,
+            }
+          }
+        )
+      }
 
     });
 
@@ -35,7 +55,7 @@ export default function HomeScreen({ navigation }: any) {
     <View style={styles.container}>
       <View
         style={{
-          backgroundColor: 'white',
+          backgroundColor: 'black',
           borderBottomColor: '#000000',
           borderBottomWidth: 1,
           flex: 0.3,
@@ -43,12 +63,13 @@ export default function HomeScreen({ navigation }: any) {
       >
         <TextInput
           editable
-          multiline
-          numberOfLines={4}
+          returnKeyType='search'
+          numberOfLines={1}
           maxLength={40}
+          onSubmitEditing={() => handleClick()}
           onChangeText={(text) => onChangeText(text)}
           value={address}
-          style={{ padding: 10 }}
+          style={{ padding: 10, backgroundColor: "white" }}
         />
       </View>
       <Button title="Search" onPress={handleClick} />

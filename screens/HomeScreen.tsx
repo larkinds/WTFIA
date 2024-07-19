@@ -13,6 +13,10 @@ export default function HomeScreen({ navigation }: any) {
       fetchLocation();
       navigation.navigate('Location');
     }
+
+    function navigateToSearch() {
+      navigation.navigate('Search');
+    }
   
     return (
       <View style={styles.container}>
@@ -35,6 +39,7 @@ export default function HomeScreen({ navigation }: any) {
           left={32}
           top={25}
         />
+          <Text style={styles.title}>Where the Fuck Am I?</Text>
         <View style={styles.canvas}>
           <Suspense fallback={<Text>Temp</Text>}>
             <Canvas>
@@ -43,11 +48,16 @@ export default function HomeScreen({ navigation }: any) {
             </Canvas>
           </Suspense>
         </View>
-        <View style={styles.button}>
+        <View style={styles.buttonContainer}>
           <Button
-            title="Where the Fuck Am I?"
+            title="Locate Me"
             color="white"
             onPress={() => handleClick()}
+          />
+          <Button
+            title="Search by Address"
+            color="white"
+            onPress={() => navigateToSearch()}
           />
         </View>
         <QuestionMarkStar
@@ -82,14 +92,36 @@ export default function HomeScreen({ navigation }: any) {
       width: '100%',
       height: '100%',
     },
+    title: {
+      borderWidth: 1,
+      marginTop: 100,
+      borderRadius: 3,
+      backgroundColor: "black",
+      color: "white",
+      borderColor: 'white',
+      padding: 7,
+      shadowColor: 'white',
+      shadowOpacity: 1,
+      shadowOffset: {
+        width: 1,
+        height: 1,
+      },
+      shadowRadius: 2,
+      fontSize: 20,
+    },
     canvas: {
       height: 600,
       width: 600,
+      marginTop: -100,
     },
-    button: {
+    buttonContainer: {
+      justifyContent: "space-around",
+      marginTop: -80,
+     
+    },
+    buttons: {
       borderWidth: 1,
       borderRadius: 10,
-      marginTop: -60,
       backgroundColor: "black",
       borderColor: 'white',
       padding: 2,
@@ -101,5 +133,5 @@ export default function HomeScreen({ navigation }: any) {
       },
       shadowRadius: 2,
       fontSize: 20,
-    },
+    }
   });

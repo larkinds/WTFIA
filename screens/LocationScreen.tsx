@@ -12,9 +12,10 @@ export default function LocationScreen( ) {
   async function refreshLocation() {
     setReloading(true);
     fetchLocation();
+    
     setTimeout(() => {
       setReloading(false);
-    }, 11000)
+    }, 11100)
   }
 
   return (
