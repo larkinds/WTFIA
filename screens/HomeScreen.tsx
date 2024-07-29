@@ -1,5 +1,5 @@
 import { useContext, Suspense } from 'react';
-import { StyleSheet, View, Text, Button } from 'react-native';
+import { StyleSheet, View, Text, Button, Pressable } from 'react-native';
 import { Canvas } from '@react-three/fiber';
 import Globe from '../components/Globe';
 import QuestionMarkStar from '../components/QuestionMarkStar';
@@ -24,7 +24,12 @@ export default function HomeScreen({ navigation }: any) {
         <QuestionMarkStar duration={2000} color="white" left={130} top={120} />
         <QuestionMarkStar duration={5000} color="white" left={-140} top={110} />
         <QuestionMarkStar duration={2000} color="pink" left={32} top={15} />
-        <Text style={styles.title}>Where the Fuck Am I?</Text>
+        {/* <Text style={styles.title}>Where the Fuck Am I?</Text> */}
+        <Pressable onPress={handleClick}>
+          <Text style={styles.title}>Where the Fuck Am I?</Text>
+        </Pressable>
+
+
         <QuestionMarkStar duration={5000} color="white" left={-140} top={110} />
         <QuestionMarkStar duration={2000} color="white" left={32} top={35} />
 
@@ -93,7 +98,7 @@ export default function HomeScreen({ navigation }: any) {
     },
     buttonContainer: {
       justifyContent: "space-around",
-      marginTop: -180,
+      marginTop: -200,
      
     },
     buttons: {

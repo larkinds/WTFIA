@@ -1,42 +1,70 @@
 import MapView from 'react-native-maps';
 import { useContext, useState } from 'react';
 import { StyleSheet, Text, View, ActivityIndicator } from 'react-native';
-import Countdown from '../components/Countdown';
 import { LocationContext } from '../context/LocationContext';
+import Countdown from '../components/Countdown';
 import RefreshButton from '../components/RefreshButton';
 
-export default function LocationScreen( ) {
-  const {neighborhood, region, fetchLocation} = useContext(LocationContext);
+export default function LocationScreen() {
+  const { location, fetchLocation } = useContext(LocationContext);
   const [reloading, setReloading] = useState(false);
 
-  async function refreshLocation() {
+  function refreshLocation() {
     setReloading(true);
     fetchLocation();
-    
+
     setTimeout(() => {
       setReloading(false);
-    }, 11100)
+    }, 11100);
   }
 
   return (
     <View style={styles.container}>
-          <MapView
-            style={StyleSheet.absoluteFillObject}
-            mapType="mutedStandard"
-            showsUserLocation={true}
-            region={region}
-          />
-          <View>
-            {neighborhood === '' ? (
-              reloading ? (<ActivityIndicator style={styles.activityIndicator} size="large"  color="black"/>) : (<Countdown />)
-            ) : (
-              <>
-              <View style={styles.locationVisibleView}>
-                <Text style={{color: "black", fontSize: 20, marginLeft:5, marginRight: 5}}>{neighborhood} <RefreshButton onPressFunction={refreshLocation} /></Text>
-              </View>
-              </>
-            )}
+      <MapView
+        style={StyleSheet.absoluteFillObject}
+        mapType="mutedStandard"
+        showsUserLocation={true}
+        region={location?.region}
+      />
+      <View>
+        {location?.error !== '' ? (
+          <View style={styles.locationVisibleView}>
+            <Text style={{
+                  color: 'black',
+                  fontSize: 20,
+                  marginLeft: 5,
+                  marginRight: 5,
+                }}>Whoops! Let's Try that Again</Text>
+                <RefreshButton onPressFunction={refreshLocation} />
           </View>
+        ) : location?.neighborhood === '' ? (
+          reloading ? (
+            <ActivityIndicator
+              style={styles.activityIndicator}
+              size="large"
+              color="black"
+            />
+          ) : (
+            <Countdown />
+          )
+        ) : (
+          <>
+            <View style={styles.locationVisibleView}>
+              <Text
+                style={{
+                  color: 'black',
+                  fontSize: 20,
+                  marginLeft: 5,
+                  marginRight: 5,
+                }}
+              >
+                {location?.neighborhood}{' '}
+              </Text>
+              <RefreshButton onPressFunction={refreshLocation} />
+            </View>
+          </>
+        )}
+      </View>
     </View>
   );
 }
@@ -58,14 +86,16 @@ const styles = StyleSheet.create({
   //   margin: 4,
   // },
   activityIndicator: {
-    backgroundColor: "#FDF1D9", 
-    top: 430, 
-    padding: 10
+    backgroundColor: '#FDF1D9',
+    top: 430,
+    padding: 10,
   },
   locationVisibleView: {
-    backgroundColor: "#E1E0DB",
+    display: "flex",
+    flexDirection: "row",
+    backgroundColor: '#E1E0DB',
     top: 200,
     padding: 2,
-    paddingBottom: 8
-  }
+    paddingBottom: 8,
+  },
 });

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { StyleSheet, Animated, Easing } from 'react-native';
+import { Animated, Easing } from 'react-native';
 
 export default function QuestionMarkStar(props: {duration: number, color: string, left: number, top: number} ) {
     const fadeAnim = useRef(new Animated.Value(0)).current; // Initial value for opacity: 0

@@ -1,4 +1,4 @@
-import { useContext, Suspense, useState } from 'react';
+import { useContext, useState } from 'react';
 import { StyleSheet, View, TextInput, Button, Keyboard } from 'react-native';
 import Geocoder from 'react-native-geocoding';
 import { LocationContext } from '../context/LocationContext';
@@ -28,11 +28,7 @@ export default function SearchScreen({ navigation }: any) {
       neighborhood = addressComponent.find((component) => component.types.includes('neighborhood') || component.types.includes("locality")
       )?.long_name;
 
-      console.log({neighborhood})
-
-
       if (latitude && longitude && neighborhood !== undefined) {
-        
         setCurrentLocation(
           {
             neighborhood,
@@ -41,14 +37,29 @@ export default function SearchScreen({ navigation }: any) {
               longitude,
               latitudeDelta: .05,
               longitudeDelta: .05,
-            }
+            },
+            error: ""
           }
         )
       }
+    }).catch((error) => {
+      setCurrentLocation(
+        {
+          neighborhood : "error",
+          region: {
+            latitude: Math.random(),
+            longitude: Math.random(),
+            latitudeDelta: .05,
+            longitudeDelta: .05,
+          },
+          error: error.message
+        }
+      )
+    }).finally(() => {
+      navigation.navigate('Location');
+    })
 
-    });
-
-    navigation.navigate('Location');
+    
   }
 
   return (
